@@ -7,8 +7,14 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
 
   //GET, POST, PUT, DELETE
 
+  // console.log(url);  -> /products/1 -> []
+  const urlParams = url?.split("/");
+  // console.log(urlParams); ["","products","1"]
+  const id = urlParams && urlParams[1] === "products" ? Number(urlParams[2]) : null;
+  // console.log(id);
+
   if (url === "/products" && method === "GET") {
-    const products = productService()
+    const products = productService();
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(
       JSON.stringify({
@@ -17,6 +23,7 @@ const productController = (req: IncomingMessage, res: ServerResponse) => {
       }),
     );
   }
+  
 };
 
 export default productController;
