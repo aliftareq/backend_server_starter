@@ -1,5 +1,6 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from "http";
 import routehandler from "./routes/route";
+import config from "./config";
 
 const server: Server = createServer(
   (req: IncomingMessage, res: ServerResponse) => {
@@ -7,6 +8,6 @@ const server: Server = createServer(
   },
 );
 
-server.listen(5000, () => {
-  console.log("Yahooo!!! server is Active");
+server.listen(config.port, () => {
+  console.log(`Yahooo!!! server is Active on ${config.port}`);
 });
